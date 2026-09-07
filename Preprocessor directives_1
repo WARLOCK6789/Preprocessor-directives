@@ -1,0 +1,53 @@
+#include <iostream>
+
+#define MODE 1
+
+#ifdef MODE
+
+#if MODE == 0
+
+void print_training_mode() {
+    std::cout << "Работаю в режиме тренировки" << std::endl;
+}
+
+#elif MODE == 1
+
+int add(int a, int b) {
+    return a + b;
+}
+
+void print_combat_mode() {
+    std::cout << "Работаю в боевом режиме" << std::endl;
+    
+    int num1, num2;
+    std::cout << "Введите число 1: ";
+    std::cin >> num1;
+    std::cout << "Введите число 2: ";
+    std::cin >> num2;
+    
+    std::cout << "Результат сложения: " << add(num1, num2) << std::endl;
+}
+
+#else
+
+void print_unknown_mode() {
+    std::cout << "Неизвестный режим. Завершение работы" << std::endl;
+}
+
+#endif
+
+int main() {
+    #if MODE == 0
+        print_training_mode();
+    #elif MODE == 1
+        print_combat_mode();
+    #else
+        print_unknown_mode();
+    #endif
+    
+    return 0;
+}
+
+#else
+    #error "Необходимо определить MODE"
+#endif
